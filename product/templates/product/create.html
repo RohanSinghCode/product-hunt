@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+{% if error%}
+    <div style="color: red;">
+        {{error}}
+    </div>
+    
+{% endif %}
+
+<form method="POST" action="{% url 'product:create' %}" enctype="multipart/form-data">
+{%  csrf_token  %}
+
+            <div class="form-group ">
+                <label for="title">Title</label>
+                <input type="text" name="title" class="form-control">
+
+            </div>
+
+            <div class="form-group">
+                
+            <label for="body">Description</label>
+            <textarea name="body" id="body" cols="30" rows="10" class="form-control"></textarea>
+
+            </div>
+           
+            <div class="form-group">
+
+                    <label for="url">URL</label>
+                    <input type="text" name="url" class="form-control">
+
+            </div>
+
+           
+            <div class="row">
+                <div class="col">
+                    <label for="icon">icon</label>
+                    <input type="file" name="icon" class="form-control-file">
+
+                </div>
+                <div class="col">
+                    <label for="image">image</label>
+                    <input type="file" name="image" class="form-control-file">
+
+                </div>
+
+            </div>
+            
+            <input type="submit" value="Create" class="btn btn-primary btn-dark btn-lg ">
+                    
+            
+
+
+
+
+
+
+
+
+
+</form>
+
+
+
+{% endblock %}

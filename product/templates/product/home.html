@@ -2,4 +2,23 @@
 
 {% block content %}
 
+{% for product in pr.all %}
+
+<div class="row pt-2">
+    <div class="col-2">
+        <img src="{{ product.icon.url}}" alt="image" class="img-fluid">
+    </div>
+    <div class="col-6">
+        <h2>{{ product.title}}</h2>
+        <p>{{ product.summary}}</p>
+    </div>
+    <div class="col-4">
+        <a href="{% url 'product:detail' product.id %}"><button class="btn btn-primary btn-lg btn-block">Read Me!</button></a>
+    </div>
+
+</div>
+
+
+{% endfor %}
+
 {% endblock %}
