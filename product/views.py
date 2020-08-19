@@ -1,21 +1,23 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from django.views.generic.edit import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import product
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 
 
 # Create your views here.
 
 
-def home(request):
-    pr = product.objects
-    return render(request,'product/home.html',{'pr':pr})
+class home(ListView):
+    model = product
+    context_object_name = 'pr'
+    template_name = 'product/home.html'
 
 
 
-@login_required(login_url='/accounts/signup')
+@login_required(login_url='/accounts/login')
 def create(request):
 
     if request.method == "POST":
@@ -56,3 +58,12 @@ def upvote(request,product_id):
         pr.save()
         return redirect('/product/'+str(product_id))
 
+
+class myHunt(LoginRequiredMixin,ListView):
+    login_url = '/accounts/login/'
+    redirect_field_name = 'login'
+    model = product
+    context_object_name = 'hunts'
+    template_name = 'product/myHunt.html'
+    def get_queryset(self):
+        return product.objects.filter(hunter=self.request.user)

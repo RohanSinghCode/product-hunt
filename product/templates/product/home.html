@@ -2,6 +2,17 @@
 
 {% block content %}
 
+<style>
+    .container .center-me {
+        display: flex;
+        justify-content: center;
+        
+
+    }
+</style>
+
+{% if pr%}
+
 {% for product in pr.all %}
 
 <div class="row pt-2">
@@ -20,5 +31,14 @@
 
 
 {% endfor %}
+{% else %}
+    <div class="container">
+        <h1 class="text-center">Ugh!!! No Products Yet</h1>
+        <span class="center-me">Click Below to create one!</span>
+        <br>
+        <a class="center-me" href="{% url 'product:create' %}"><button class="btn btn-primary">Create</button></a>
+    </div>
+    
+{% endif %}
 
 {% endblock %}

@@ -20,7 +20,7 @@
           <script src="https://kit.fontawesome.com/d012721b9f.js" crossorigin="anonymous"></script>
 
         <!-- FONTS -->
-        <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital@1&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
     </head>
 
     <body>
@@ -38,6 +38,10 @@
                 <li class="nav-item ">
                   <a class="nav-link" href="{% url 'home' %}">{{user.username|title}}</a>
                 </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="{% url 'product:myhunt' %}">My Hunts</a>
+                </li>
+                
 
                 <li class="nav-item ">
                   <a class="nav-link" href="{% url 'product:create' %}">Create</a>

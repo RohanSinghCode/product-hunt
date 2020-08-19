@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    .container .center-me {
+        display: flex;
+        justify-content: center;
+        
+
+    }
+</style>
+
+{% if hunts%}
+{% for myhunt in hunts %}
+<div class="row pt-2">
+    <div class="col-2">
+        <img src="{{ myhunt.icon.url}}" alt="image" class="img-fluid">
+    </div>
+    <div class="col-6">
+        <h2>{{ myhunt.title}}</h2>
+        <p>{{ myhunt.summary}}</p>
+    </div>
+    <div class="col-4">
+        <a href="{% url 'product:detail' product.id %}"><button class="btn btn-primary btn-lg btn-block">Read Me!</button></a>
+    </div>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+<div class="container">
+    <h1 class="text-center">You don't have any product</h1>
+    <span class="center-me">Click Below to create one!</span>
+    <br>
+    <a class="center-me" href="{% url 'product:create' %}"><button class="btn btn-primary">Create</button></a>
+</div>
+
+{% endif %}
+
+{% endblock %}
