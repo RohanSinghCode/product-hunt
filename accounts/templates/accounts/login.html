@@ -10,12 +10,18 @@
 
 
 {% endif %}
+<style>
+    .thebox {
+        width: 500px;
+    }
+</style>
 
-<h1>LOGIN</h1>
+
 
 <form action="{% url 'accounts:login' %}" method="POST">
-
-    {% csrf_token %}
+    <div class="container thebox">
+        <h1>LOGIN</h1>
+        {% csrf_token %}
         <div class="form-group">    
         <label for="exampleInputEmail1">Username</label>
         <input type="text" name="username" id="exampleInputEmail1" class="form-control" required>
@@ -26,6 +32,8 @@
         </div>
         
         <input type="submit" name="submit" id="" class="btn btn-primary" value="LOGIN">
+    </div>
+   
         
 
 </form>

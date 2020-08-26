@@ -21,7 +21,7 @@ class home(ListView):
 def create(request):
 
     if request.method == "POST":
-        if request.POST['title'] and request.POST['url'] and request.FILES['image'] and request.FILES['icon'] and request.POST['body']:
+        if request.POST['title'] and request.POST['url'] and request.POST['body']:
             pr = product()
             pr.title = request.POST['title']
             pr.body = request.POST['body']
@@ -30,13 +30,13 @@ def create(request):
             else:
                 pr.url = 'http://' +  request.POST['url']
 
-            pr.icon = request.FILES['icon']
-            pr.image = request.FILES['image']
+            if request.POST['image']:
+                pr.image = request.FILES['image']
 
             pr.pub_date =  timezone.datetime.now()
             pr.hunter = request.user
             pr.save()
-            return redirect('/product/'+str(product_id))
+            return redirect('/product/'+str(pr.id))
         else:
             return render(request,'product/create.html',{'error':'*ALL FIELDS ARE REQUIRED'})
 

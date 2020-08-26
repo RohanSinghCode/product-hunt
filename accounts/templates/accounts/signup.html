@@ -8,7 +8,13 @@
 
 {% endif %}
 
-<div class="container">
+<style>
+    .thebox {
+        width: 500px;
+    }
+</style>
+
+<div class="container thebox">
     <h1>SIGN UP!</h1>
 
     <form action="{% url 'accounts:signup' %}" method="POST">
